@@ -1,5 +1,4 @@
-//gets state object last or initial.
-//recieves action
+
 import {UserActionTypes} from "./user.types"
 const INTIAL_STATE={
     currentUser:null
