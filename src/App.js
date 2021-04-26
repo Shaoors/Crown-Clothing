@@ -52,7 +52,7 @@ class App extends React.Component {
 const mapToStateProps = ({user})=> ({
   currentUser:user.currentUser
 })
-//is say kia hta
+
 const mapDispatchProps= dispatch =>({
 setCurrentUser:user=> dispatch(setCurrentUser(user))
 })
