@@ -10,7 +10,8 @@ import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import CheckOutPage from "./pages/checkout/checkout.component";
 import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component"
-import {auth,createUserProfileDocument} from './firebase/firebase.utils';
+import {auth,createUserProfileDocument,addCollectionAndDocuments} from './firebase/firebase.utils';
+//import {selectCollectionsForPreview} from "./redux/shop/shop.selectors"
 
 class App extends React.Component {
  
@@ -18,6 +19,7 @@ class App extends React.Component {
   unsubscribeFromAuth= null;
   componentDidMount(){
 
+    //const {setCurrentUser,collectionsArray}= this.props;
     const {setCurrentUser}= this.props;
     //idr kia hora
     this.unsubscribeFromAuth= auth.onAuthStateChanged(async userAuth =>{
@@ -32,7 +34,8 @@ class App extends React.Component {
       }
       //idr kia hora
       setCurrentUser(userAuth);
-    })
+      //addCollectionAndDocuments('collections',collectionsArray.map(({title,items})=>({title,items})));
+    });
   }
 //ye yaha q use
   componentWillUnmount(){
@@ -54,7 +57,8 @@ class App extends React.Component {
 }
 /*curentuser kaha say milrha isko*/
 const mapToStateProps = createStructuredSelector({
-  currentUser:selectCurrentUser
+  currentUser:selectCurrentUser,
+  //collectionsArray:selectCollectionsForPreview
 })
 //is say kia hta
 const mapDispatchProps= dispatch =>({

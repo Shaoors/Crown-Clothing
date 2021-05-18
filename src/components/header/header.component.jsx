@@ -1,37 +1,36 @@
 import React from "react";
 import {connect} from "react-redux";
-import { Link } from "react-router-dom";
 import {createStructuredSelector} from "reselect"
 import {selectCartHidden} from "../../redux/cart/cart.selectors";
 import {selectCurrentUser} from "../../redux/user/user.selector"
-import "./header.styles.scss";
+import {LogoConatiner,HeaderConatiner,OptionsConatners,OptionLink} from "./header.styles.jsx"
 import CartDropDown from "../cart-dropdown/cart-dropdown.component"
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import {auth} from "../../firebase/firebase.utils"
 import CartIcon from "../cart-icon/cart-icon-compnonent";
 const Header = ({currentUser, hidden}) => (
-  <div className="header">
-    <Link className="logo-container" to="/">
+  <HeaderConatiner>
+    <LogoConatiner to="/">
       <Logo className="logo" />
-    </Link>
-    <div className="options">
-      <Link className="option" to="/shop">
+    </LogoConatiner>
+    <OptionsConatners>
+      <OptionLink to="/shop">
         SHOP
-      </Link>
-      <Link className="option" to="/shop">
+      </OptionLink>
+      <OptionLink to="/shop">
         CONTACT
-      </Link>
+      </OptionLink>
       {
         currentUser ?
-        <div className="option" onClick={()=>auth.signOut()}>SIGN OUT</div>
+        <OptionLink as='div' onClick={()=>auth.signOut()}>SIGN OUT</OptionLink >
         :
-        <Link className="option" to="/signin">SIGN IN</Link>
+        <OptionLink to="/signin">SIGN IN</OptionLink>
       }
       <CartIcon/>
-    </div>
+    </OptionsConatners>
     { hidden? null:
     <CartDropDown/>}
-  </div>
+  </HeaderConatiner>
 );
 // state ke jga () dal k error q ata
 // const mapStateToProps = (state) =>({
